@@ -1,0 +1,46 @@
+from PIL import Image, ImageDraw, ImageFont
+import pandas as pd
+import os
+import random 
+
+hexa = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
+font = ImageFont.truetype("DejaVuSansMono.ttf",40)
+nft={'first':[],'second':[],'third':[],'fourth':[],'fifth':[],'sixth':[],'seventh':[],'eighth':[],'ninth':[],'tenth':[],'sm':[]}
+for i in range(0,100):
+    img = Image.open('black720.png')
+    draw = ImageDraw.Draw(img)
+    special=(random.choice(hexa))
+    draw.text((10,10),text=special,fill=(74,246,38),font=font)
+    nft['first'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,50),text=special,fill=(74,246,38),font=font)
+    nft['second'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,90),text=special,fill=(74,246,38),font=font)
+    nft['third'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,130),text=special,fill=(74,246,38),font=font)
+    nft['fourth'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,170),text=special,fill=(74,246,38),font=font)
+    nft['fifth'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,210),text=special,fill=(74,246,38),font=font)
+    nft['sixth'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,250),text=special,fill=(74,246,38),font=font)
+    nft['seventh'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,290),text=special,fill=(74,246,38),font=font)
+    nft['eighth'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,330),text=special,fill=(74,246,38),font=font)
+    nft['ninth'].append(special)
+    special=random.choice(hexa)
+    draw.text((10,370),text=special,fill=(74,246,38),font=font)
+    nft['tenth'].append(special)   
+    img.save('images2/hexa{}.png'.format(i))
+    sumall = hex(int(nft['first'][i], 16) + int(nft['second'][i], 16)+ int(nft['third'][i], 16)+ int(nft['fourth'][i], 16)+ int(nft['fifth'][i], 16)+ int(nft['sixth'][i], 16)+ int(nft['seventh'][i], 16)+ int(nft['eighth'][i], 16)+ int(nft['ninth'][i], 16)+ int(nft['tenth'][i], 16))
+    nft['sm'].append(sumall)
+df=pd.DataFrame.from_dict(nft)
+df.to_csv('prop.csv',index=True)

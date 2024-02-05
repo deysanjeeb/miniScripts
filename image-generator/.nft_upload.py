@@ -1,0 +1,215 @@
+import pyautogui
+import pandas as pd
+import os
+import csv
+import glob
+from time import sleep
+
+
+file = open('prop.csv')
+csvreader = csv.reader(file)
+header=[]
+header = next(csvreader)
+rows = []
+for row in csvreader:
+    rows.append(row)
+i=84
+# for i in range(37,40):
+first=rows[i][1]
+second=rows[i][2]
+third=rows[i][3]
+fourth=rows[i][4]
+fifth=rows[i][5]
+sixth=rows[i][6]
+seventh=rows[i][7]
+eighth=rows[i][8]
+ninth=rows[i][9]
+tenth=rows[i][10]
+sm=rows[i][11]
+pyautogui.moveTo(1174, 138,duration=1)
+pyautogui.click()
+sleep(5)
+pyautogui.moveTo(497, 386,duration=1)
+pyautogui.click()
+sleep(5)
+pyautogui.typewrite("/home/skd/Documents/Workspace/image-generator/images2/hexa{}.png".format(i), interval=0.1)
+pyautogui.press("enter")
+sleep(2)
+pyautogui.scroll(-10)
+sleep(2)
+pyautogui.moveTo(422, 227,duration=1)
+pyautogui.click()
+pyautogui.typewrite("H #{}".format(i))
+sleep(3)
+pyautogui.scroll(-10)
+pyautogui.moveTo(1025, 231,duration=1)
+pyautogui.click()
+sleep(2)
+pyautogui.moveTo(346, 272,duration=1)
+pyautogui.click()
+sleep(2)
+pyautogui.moveTo(1032, 300,duration=1)
+pyautogui.click()
+sleep(2)
+pyautogui.moveTo(587, 415,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("First", interval=0.1)
+pyautogui.moveTo(836, 416,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(first, interval=0.1)
+
+pyautogui.moveTo(519, 485,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(522, 486,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Second", interval=0.1)
+pyautogui.moveTo(843, 479,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(second, interval=0.1)
+
+pyautogui.moveTo(509, 554,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(543, 510,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Third", interval=0.1)
+pyautogui.moveTo(862, 518,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(third, interval=0.1)
+
+pyautogui.moveTo(520, 582,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(555, 570,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Fourth", interval=0.1)
+pyautogui.moveTo(854, 561,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(fourth, interval=0.1)
+
+pyautogui.moveTo(523, 608,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(552, 625,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Fifth", interval=0.1)
+pyautogui.moveTo(840, 619,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(fifth, interval=0.1)
+
+pyautogui.scroll(-5)
+
+pyautogui.moveTo(527, 605,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(501, 605,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Sixth", interval=0.1)
+pyautogui.moveTo(846, 603,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(sixth, interval=0.1)
+
+pyautogui.scroll(-5)
+
+pyautogui.moveTo(543, 598,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(520, 607,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Seventh", interval=0.1)
+pyautogui.moveTo(847, 602,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(seventh, interval=0.1)
+
+pyautogui.scroll(-5)
+
+pyautogui.moveTo(543, 598,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(520, 607,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Eighth", interval=0.1)
+pyautogui.moveTo(847, 602,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(eighth, interval=0.1)
+
+pyautogui.scroll(-5)
+
+pyautogui.moveTo(543, 598,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(520, 607,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Ninth", interval=0.1)
+pyautogui.moveTo(847, 602,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(ninth, interval=0.1)
+
+pyautogui.scroll(-5)
+
+pyautogui.moveTo(543, 598,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(520, 607,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Tenth", interval=0.1)
+pyautogui.moveTo(847, 602,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(tenth, interval=0.1)
+
+pyautogui.scroll(-5)
+sleep(2)
+
+pyautogui.moveTo(543, 598,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(520, 607,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite("Sum", interval=0.1)
+pyautogui.moveTo(847, 602,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.typewrite(sm, interval=0.1)
+sleep(1)
+
+pyautogui.moveTo(680, 715,duration=1)
+pyautogui.click()
+sleep(2)
+pyautogui.scroll(-15)
+sleep(2)
+
+pyautogui.moveTo(673, 346,duration=1)
+pyautogui.click()
+sleep(2)
+pyautogui.moveTo(337, 403,duration=1)
+pyautogui.click()
+sleep(1)
+pyautogui.moveTo(307, 673,duration=1)
+pyautogui.click()
+sleep(5)
+pyautogui.moveTo(926, 206,duration=1)
+pyautogui.click()
+sleep(5)
+print(i)
