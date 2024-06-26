@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-
+from pprint import pprint
 
 def search_stock_by_isin(isin):
     try:
@@ -28,6 +28,7 @@ def search_stock_by_isin(isin):
 
 df = pd.read_csv('pg8to12.csv')
 print(df['Tables ISIN'])
+stock_results= {}
 for isin in df['Tables ISIN']:
     result = search_stock_by_isin(isin)
 
@@ -35,5 +36,9 @@ for isin in df['Tables ISIN']:
         print(f"Stock Name: {result['name']}")
         print(f"Symbol: {result['symbol']}")
         print(f"Exchange: {result['exchange']}")
+        stock_results[isin] = result
     else:
         print("Stock not found or there was an error in the search.")
+        stock_results[isin] = None
+
+pprint(stock_results)
