@@ -4,6 +4,7 @@ from pprint import pprint
 import csv 
 from datetime import datetime as dt
 from datetime import date, timedelta
+from tqdm import tqdm
 
 
 def search_stock_by_isin(isin, date):
@@ -12,7 +13,6 @@ def search_stock_by_isin(isin, date):
         stock = yf.Ticker(isin)
         dat = dt.strptime(date, '%Y-%m-%d')
         end = dat + timedelta(days=1)
-        print(dat)
         # Get the stock info
         info = stock.info
         # pprint(info)
@@ -57,11 +57,11 @@ def search_stock_by_isin(isin, date):
 # Example usage
 filename = 'KPK158'
 df = pd.read_csv(f'{filename}.csv')
-print(df['ISINNO'])
+# print(df['ISINNO'])
 date = '2018-01-31'
 
 stock_results= {}
-for isin in df['ISINNO']:
+for isin in tqdm(df['ISINNO']):
     try:
         result = search_stock_by_isin(isin, date)
         
@@ -80,18 +80,18 @@ for isin in df['ISINNO']:
         }
 
     if result:
-        print(f"Stock Name: {result['name']}")
-        print(f"Symbol: {result['symbol']}")
-        print(f"Exchange: {result['exchange']}")
-        print(f"Open: {result['Open']}")
-        print(f"current_price {result['currentMarketPrice']}")
+        # print(f"Stock Name: {result['name']}")
+        # print(f"Symbol: {result['symbol']}")
+        # print(f"Exchange: {result['exchange']}")
+        # print(f"Open: {result['Open']}")
+        # print(f"current_price {result['currentMarketPrice']}")
         stock_results[isin] = result
 
     else:
         print("Stock not found or there was an error in the search.")
         stock_results[isin] = None
 
-pprint(stock_results)
+# pprint(stock_results)
 with open(f'{filename}_stock_results_{date}.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     # Write the header
