@@ -1,7 +1,8 @@
 from PIL import Image
 import os
 
-def add_image_on_top(base_image_path, top_image_path, output_path, position=(50, 50)):
+
+def add_image_on_top(base_image_path, top_image_path, output_path, position):
     try:
         # Open the base image and ensure it is in RGBA mode
         base_image = Image.open(base_image_path).convert("RGBA")
@@ -28,6 +29,16 @@ def add_image_on_top(base_image_path, top_image_path, output_path, position=(50,
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
+
+def convert_jpeg_to_png(jpeg_path, png_path):
+    try:
+        image = Image.open(jpeg_path)
+        image.save(png_path, "PNG")
+        print(f"Converted {jpeg_path} to {png_path}")
+    except Exception as e:
+        print(f"Error converting {jpeg_path} to PNG: {str(e)}")
+
+
 # Example usage
 base_images_dir = 'Tides/og_high'
 # Ensure top_image_path and position are defined as before
@@ -36,17 +47,27 @@ base_images_dir = 'Tides/og_high'
 files = os.listdir(base_images_dir)
 
 # Filter out files to only include images (e.g., .png, .jpg)
-image_files = [file for file in files if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
+jpgs = [file for file in files if file.lower().endswith(('.jpg', '.jpeg'))]
 
-top_image_path = 'Tides/logo200.jpg'
+top_image_path = 'Tides/logo.jpg'
 # output_path = 'path/to/output_image.png'
-position = (100, 100)  # X, Y coordinates where the top image will be placed
+position = (50, 50)  # X, Y coordinates where the top image will be placed
 
-for image_file in image_files:
+# for image_file in jpgs:
+#     base_image_path = os.path.join(base_images_dir, image_file)
+#     output_image_path = os.path.join(base_images_dir, image_file)  # Modify output path as needed
+#     if image_file.lower().endswith('.jpg') or image_file.lower().endswith('.jpeg'):
+#         png_image_path = os.path.splitext(output_image_path)[0] + '.png'
+#         convert_jpeg_to_png(base_image_path, png_image_path)
+#         base_image_path = png_image_path  # Update base_image_path to the new PNG file
+files = os.listdir(base_images_dir)
+
+pngs = [file for file in files if file.lower().endswith(('.png'))]
+
+for image_file in pngs:
     base_image_path = os.path.join(base_images_dir, image_file)
-    output_image_path = os.path.join('Tides/watermarked', image_file)  # Modify output path as needed
-    
-    # Apply watermark
+    output_image_path = os.path.join('Tides/watermarked', image_file)
+
     add_image_on_top(base_image_path, top_image_path, output_image_path, position)
 
 print("Processing completed.")
