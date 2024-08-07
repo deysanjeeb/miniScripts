@@ -39,35 +39,63 @@ def convert_jpeg_to_png(jpeg_path, png_path):
         print(f"Error converting {jpeg_path} to PNG: {str(e)}")
 
 
+def convert_directory_jpegs_to_pngs(directory):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.lower().endswith(('.jpg', '.jpeg')):
+                jpeg_path = os.path.join(root, file)
+                png_path = os.path.splitext(jpeg_path)[0] + '.png'
+                convert_jpeg_to_png(jpeg_path, png_path)
+
+
+def process_images_with_structure(base_images_dir, watermark_image_path, output_base_dir):
+    for root, dirs, files in os.walk(base_images_dir):
+        for file in files:
+            if file.lower().endswith(('.png')):
+                base_image_path = os.path.join(root, file)
+                relative_path = os.path.relpath(base_image_path, base_images_dir)
+                output_image_path = os.path.join(output_base_dir, relative_path)
+                # Call the function to add watermark or convert images as needed
+                add_image_on_top(base_image_path, watermark_image_path, output_image_path, position=(50, 50))
+
+
 # Example usage
-base_images_dir = 'Tides/og_high'
-# Ensure top_image_path and position are defined as before
+# base_images_dir = 'Tides/og_high'
+# # Ensure top_image_path and position are defined as before
 
-# List all files in the base_images_dir
-files = os.listdir(base_images_dir)
+# # List all files in the base_images_dir
+# files = os.listdir(base_images_dir)
 
-# Filter out files to only include images (e.g., .png, .jpg)
-jpgs = [file for file in files if file.lower().endswith(('.jpg', '.jpeg'))]
+# # Filter out files to only include images (e.g., .png, .jpg)
+# jpgs = [file for file in files if file.lower().endswith(('.jpg', '.jpeg'))]
 
-top_image_path = 'Tides/logo.jpg'
-# output_path = 'path/to/output_image.png'
-position = (50, 50)  # X, Y coordinates where the top image will be placed
+# top_image_path = 'Tides/logo.jpg'
+# # output_path = 'path/to/output_image.png'
+# position = (50, 50)  # X, Y coordinates where the top image will be placed
 
-# for image_file in jpgs:
+# # for image_file in jpgs:
+# #     base_image_path = os.path.join(base_images_dir, image_file)
+# #     output_image_path = os.path.join(base_images_dir, image_file)  # Modify output path as needed
+# #     if image_file.lower().endswith('.jpg') or image_file.lower().endswith('.jpeg'):
+# #         png_image_path = os.path.splitext(output_image_path)[0] + '.png'
+# #         convert_jpeg_to_png(base_image_path, png_image_path)
+# #         base_image_path = png_image_path  # Update base_image_path to the new PNG file
+# files = os.listdir(base_images_dir)
+
+# pngs = [file for file in files if file.lower().endswith(('.png'))]
+
+# for image_file in pngs:
 #     base_image_path = os.path.join(base_images_dir, image_file)
-#     output_image_path = os.path.join(base_images_dir, image_file)  # Modify output path as needed
-#     if image_file.lower().endswith('.jpg') or image_file.lower().endswith('.jpeg'):
-#         png_image_path = os.path.splitext(output_image_path)[0] + '.png'
-#         convert_jpeg_to_png(base_image_path, png_image_path)
-#         base_image_path = png_image_path  # Update base_image_path to the new PNG file
-files = os.listdir(base_images_dir)
+#     output_image_path = os.path.join('Tides/watermarked', image_file)
 
-pngs = [file for file in files if file.lower().endswith(('.png'))]
+#     add_image_on_top(base_image_path, top_image_path, output_image_path, position)
 
-for image_file in pngs:
-    base_image_path = os.path.join(base_images_dir, image_file)
-    output_image_path = os.path.join('Tides/watermarked', image_file)
 
-    add_image_on_top(base_image_path, top_image_path, output_image_path, position)
+convert_directory_jpegs_to_pngs('Tides/M20_HD')
+base_images_dir = 'Tides/M20_HD'
+watermark_image_path = 'Tides/logo600.jpg'
+output_base_dir = 'Tides/watermarked'
+process_images_with_structure(base_images_dir, watermark_image_path, output_base_dir)
+
 
 print("Processing completed.")
