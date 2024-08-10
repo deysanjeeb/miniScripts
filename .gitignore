@@ -163,4 +163,8 @@ results
 *.pdf
 *.csv
 *.jpg
+*.JPG
+*.jpeg
+*.png
+*.webp
 *.png
